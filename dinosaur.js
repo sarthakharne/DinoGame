@@ -6,7 +6,8 @@ class Dinosaur {
         this.y = height - this.siz; // y coordinate of the dinosaur
         this.vel = 0;       // initial y directional velocity of the dinosaur
         this.grav = 3;      // gravity
-        this.ctr = 1;       // used to display different images
+        this.ctr = 0;       // used to display different images
+        this.poly = []
         // this.dinoImg = loadImage('trexDefault.png');
     }
 
@@ -28,20 +29,39 @@ class Dinosaur {
         }
     }
 
+    // detects collision
+    hit(cac) {
+        this.poly[0] = createVector(this.x, this.y);
+        this.poly[1] = createVector(this.x, this.y + this.siz/2);
+        this.poly[2] = createVector(this.x + 2/3*this.siz, this.y + this.siz);
+        this.poly[3] = createVector(this.x + this.siz, this.y);
+        return collideCirclePoly(cac.x + cac.siz/2 + 10, cac.y + cac.siz/2, cac.siz, this.poly);
+    }
+
     // display
     show() {
+        this.poly[0] = createVector(this.x, this.y);
+        this.poly[1] = createVector(this.x, this.y + this.siz/2);
+        this.poly[2] = createVector(this.x + 2/3*this.siz, this.y + this.siz);
+        this.poly[3] = createVector(this.x + this.siz, this.y);
+        // strokeWeight(1);
+        // stroke(1);
+        // beginShape();
+        // for(const {x, y} of this.poly) vertex(x,y);
+        // endShape(CLOSE);
+
         // to display differe types of trex pics
         if(this.ctr == 0) {
-          image(dinoDef, this.x, this.y, this.siz, this.siz);
+            image(dinoDef, this.x, this.y, this.siz, this.siz);
         }
         else if(this.ctr >= 1 && this.ctr <= 10) {
-          image(dinoLeft, this.x, this.y, this.siz, this.siz);
+            image(dinoLeft, this.x, this.y, this.siz, this.siz);
         }
         else if(this.ctr >= 11 && this.ctr <= 20) {
-          image(dinoRight, this.x, this.y, this.siz, this.siz);
+            image(dinoRight, this.x, this.y, this.siz, this.siz);
         }
         else if(this.ctr == -1) {
-          image(dinoGO, this.x, this.y, this.siz, this.siz);
+            image(dinoGO, this.x, this.y, this.siz, this.siz);
         }
 
         // to display differe types of trex pics

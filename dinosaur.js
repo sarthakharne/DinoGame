@@ -5,7 +5,7 @@ class Dinosaur {
         this.x = 50;        // x coordinate of the dinosaur
         this.y = height - this.siz; // y coordinate of the dinosaur
         this.vel = 0;       // initial y directional velocity of the dinosaur
-        this.grav = 3;      // gravity
+        this.grav = 2;      // gravity
         this.ctr = 0;       // used to display different images
         this.poly = []      // hitbox polygon
     }

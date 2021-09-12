@@ -7,13 +7,6 @@ class Cactus {
         this.imgInd = num;
     }
 
-    // constructor() {
-    //     this.siz = 80;
-    //     this.x = width;
-    //     this.y = height - this.siz;
-    //     this.ctr = 0;
-    // }
-
     // move
     move() {
         this.x -= 12;
@@ -21,14 +14,15 @@ class Cactus {
 
     // hitboxes
     hitbox() {
-        
+
     }
 
     show() {
+        // hitbox debugging
         // strokeWeight(1);
         // stroke(1);
         // circle(this.x + this.siz/2, this.y + this.siz/2, this.siz);
-        
+
         switch(this.imgInd) {
             case 1:
                 image(cacImg1, this.x, this.y, this.siz, this.siz);
@@ -49,7 +43,5 @@ class Cactus {
                 image(cacImg6, this.x, this.y, this.siz, this.siz);
                 break;
         }
-        // // image(this.cacImg, this.x, this. y, this.siz, this.siz);
-        // image(cacImg, this.x, this.y, this.siz, this.siz);
     }
 }

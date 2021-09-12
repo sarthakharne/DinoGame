@@ -7,8 +7,7 @@ class Dinosaur {
         this.vel = 0;       // initial y directional velocity of the dinosaur
         this.grav = 3;      // gravity
         this.ctr = 0;       // used to display different images
-        this.poly = []
-        // this.dinoImg = loadImage('trexDefault.png');
+        this.poly = []      // hitbox polygon
     }
 
     // activates jump
@@ -29,21 +28,27 @@ class Dinosaur {
         }
     }
 
+    // update the hitbox
+    updateHB {
+      this.poly[0] = createVector(this.x, this.y);
+      this.poly[1] = createVector(this.x, this.y + this.siz/2);
+      this.poly[2] = createVector(this.x + 2/3*this.siz, this.y + this.siz);
+      this.poly[3] = createVector(this.x + this.siz, this.y);
+    }
+
     // detects collision
     hit(cac) {
-        this.poly[0] = createVector(this.x, this.y);
-        this.poly[1] = createVector(this.x, this.y + this.siz/2);
-        this.poly[2] = createVector(this.x + 2/3*this.siz, this.y + this.siz);
-        this.poly[3] = createVector(this.x + this.siz, this.y);
+        // update the hitbox
+        this.updateHB();
         return collideCirclePoly(cac.x + cac.siz/2 + 10, cac.y + cac.siz/2, cac.siz, this.poly);
     }
 
     // display
     show() {
-        this.poly[0] = createVector(this.x, this.y);
-        this.poly[1] = createVector(this.x, this.y + this.siz/2);
-        this.poly[2] = createVector(this.x + 2/3*this.siz, this.y + this.siz);
-        this.poly[3] = createVector(this.x + this.siz, this.y);
+        // update the hitbox
+        this.updateHB();
+
+        // debugging hitboxes
         // strokeWeight(1);
         // stroke(1);
         // beginShape();
@@ -63,27 +68,5 @@ class Dinosaur {
         else if(this.ctr == -1) {
             image(dinoGO, this.x, this.y, this.siz, this.siz);
         }
-
-        // to display differe types of trex pics
-        // switch(this.ctr) {
-        //     case 0:     // default
-        //         image(dinoDef, this.x, this.y, this.siz, this.siz);
-        //         break;
-        //
-        //     case 1:     // left leg down
-        //         image(dinoLeft, this.x, this.y, this.siz, this.siz);
-        //         break;
-        //
-        //     case 2:     // right leg down
-        //         image(dinoRight, this.x, this.y, this.siz, this.siz);
-        //         break;
-        //
-        //     case 3:     // game over
-        //         image(dinoGO, this.x, this.y, this.siz, this.siz);
-        //         break;
-        // }
-
-        // image(dinoImg, this.x, this.y, this.siz, this.siz);
-        // image(this.dinoImg, this.x, this.y, this.siz, this.siz);
     }
 }
